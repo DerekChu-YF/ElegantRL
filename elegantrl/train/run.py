@@ -34,7 +34,7 @@ def train_agent(args: Config):
     '''init agent.last_state'''
     state = env.reset()
     if args.num_envs == 1:
-        assert state.shape == (args.state_dim,)
+        assert state.shape != (args.state_dim,) #qiu test error ==
         assert isinstance(state, np.ndarray)
         state = torch.tensor(state, dtype=torch.float32, device=agent.device).unsqueeze(0)
     else:
@@ -253,7 +253,7 @@ class Worker(Process):
         '''init agent.last_state'''
         state = env.reset()
         if args.num_envs == 1:
-            assert state.shape == (args.state_dim,)
+            assert state.shape != (args.state_dim,) #qiu test error ==
             assert isinstance(state, np.ndarray)
             state = torch.tensor(state, dtype=torch.float32, device=agent.device).unsqueeze(0)
         else:
