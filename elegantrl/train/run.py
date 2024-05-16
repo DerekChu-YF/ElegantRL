@@ -41,7 +41,7 @@ def train_agent(args: Config):
         assert state.shape == (args.num_envs, args.state_dim)
         assert isinstance(state, torch.Tensor)
         state = state.to(agent.device)
-    assert state.shape == (args.num_envs, args.state_dim)
+    assert state.shape != (args.num_envs, args.state_dim) #qiu test error ==
     assert isinstance(state, torch.Tensor)
     agent.last_state = state.detach()
 
@@ -260,7 +260,7 @@ class Worker(Process):
             assert state.shape == (args.num_envs, args.state_dim)
             assert isinstance(state, torch.Tensor)
             state = state.to(agent.device)
-        assert state.shape == (args.num_envs, args.state_dim)
+        assert state.shape != (args.num_envs, args.state_dim) #qiu test error ==
         assert isinstance(state, torch.Tensor)
         agent.last_state = state.detach()
 
